@@ -1,0 +1,11 @@
+Files that were used for the dashboard
+
+From https://github.com/ishaberry/Covid19Canada:
+	# case data from canada
+	~ cases.csv
+
+From https://github.com/owid/covid-19-data/tree/master/public/data:
+	# country base covid time-series
+	~ owid-covid-data.csv
+		use: 'cat owid-covid-data.csv| awk -F, '$4 ~ /2020-06-11/ {print $0 >> "as_of_june_11.csv"}'
+		to get as_of_june_11,csv file
