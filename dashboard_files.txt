@@ -21,3 +21,12 @@ From https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3310024501&pickMember
 	
 From https://www.ic.gc.ca/app/scr/tdst/tdo/crtr.html?grouped=GROUPED&searchType=KS_CS&naArea=9999&countryList=ALL&toFromCountry=CDN&reportType=TI&timePeriod=24%7CMonthly+Trends&currency=CDN&productType=NAICS&hSelectedCodes=%7C11&runReport=true
 	#Total Canadian Agricultural, Fishing, Forestry and Hunting Imports From All Countries 
+	
+From https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/prof/details/download-telecharger/comp/page_dl-tc.cfm?Lang=E
+	#Health Region Census Data
+	
+From https://open.canada.ca/data/en/dataset/90fed587-1364-4f33-a9ee-208181dc0b97
+	#Positive labour market impact asessment from 2019Q4 and 2020Q1
+
+From https://www.cic.gc.ca/opendata-donneesouvertes/data/IRCC_FF_TR_2017_01_E.xls
+	#Gender and age of migrants worker from 1997-2017
