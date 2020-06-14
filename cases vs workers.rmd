@@ -1,0 +1,149 @@
+---
+title: "cases vs workers"
+output: html_document
+---
+```{r}
+library(tidyverse)
+# Number of cases are from the online github source
+cases <- readr::read_csv(
+  file = "https://raw.githubusercontent.com/ishaberry/Covid19Canada/master/cases.csv",
+  col_names = TRUE,
+  col_types = c("cccccccccccccccc")
+)
+glimpse(cases)
+```
+```{r}
+summary <- cases%>%
+    dplyr::select(
+    case_id,
+    health_region,
+    province,
+    travel_history_country,
+    age
+ ) 
+summary
+```
+```{r}
+# Summarizing the number of cases per health region, and keeping provincial information
+cases_per_region <- summary %>%
+  group_by(health_region,province) %>%
+  summarize(cases = n())
+cases_per_region
+```
+
+```{r}
+cases_region <- arrange(cases_per_region,province)
+cases_region
+
+```
+
+```{r}
+# Importing cleaned data sets from Excel for number of migrant agricultural workers in each province.
+
+ontario_worker <- ontario_health_region%>%
+    dplyr::select(
+    "Health Unit",
+    "Province",
+    "Num Workers"
+ ) 
+ontario_worker
+bc_worker<- bc_workers%>%
+    dplyr::select(
+    "Health Unit",
+    "Province",
+    "Num Workers"
+ ) 
+bc_worker
+ma_worker<- MA_workers%>%
+    dplyr::select(
+    "Health Unit",
+    "Province",
+    "Num Workers"
+ ) 
+ma_worker
+al_worker<- alberta_workers%>%
+    dplyr::select(
+    "Health Unit",
+    "Province",
+    "Num Workers"
+    
+ ) 
+al_worker
+nl_worker<- NL_workers%>%
+    dplyr::select(
+    "Health Unit",
+    "Province",
+    "Num Workers"
+ ) 
+nl_worker
+ns_worker<- ns_workers%>%
+    dplyr::select(
+    "Health Unit",
+    "Province",
+    "Num Workers"
+ ) 
+ns_worker
+pei_worker<- PEI_workers%>%
+    dplyr::select(
+    "Health Unit",
+    "Province",
+    "Num Workers"
+ ) 
+pei_worker
+sa_worker<- sa_workers%>%
+    dplyr::select(
+    "Health Unit",
+    "Province",
+    "Num Workers"
+ ) 
+sa_worker
+qu_worker<- qu_workers%>%
+    dplyr::select(
+    "Health Unit",
+    "Province",
+    "Num Workers"
+ ) 
+qu_worker
+nb_worker<- nb_workers%>%
+    dplyr::select(
+    "Health Unit",
+    "Province",
+    "Num Workers"
+ ) 
+nb_worker
+```
+
+```{r}
+workers <-rbind(ontario_worker,bc_worker,ma_worker,al_worker,nl_worker,ns_worker,pei_worker,sa_worker,qu_worker,nb_worker)
+
+# Summarizing number of workers in each health region
+workers_summary <- aggregate(workers$"Num Workers", by=list("Health Unit"=workers$`Health Unit`),FUN=sum)
+
+colnames(workers_summary)[2]<-"number_of_workers"
+colnames(workers_summary)[1]<-"health_region"
+workers_summary
+```
+
+```{r}
+#Importing data from cleaned population excel data set
+population_data<-select(population,health_region,Population)
+
+case_pop <- merge(cases_region,population_data,by="health_region")
+cases_per<-mutate(case_pop,case_per_10000=(cases*10000)/Population)
+cases_pop<-select(cases_per,health_region,province,case_per_10000)
+worker_case <- merge(workers_summary,cases_pop,by="health_region")
+
+#worker_case is the final data set imported to and graphed in Tableau
+
+```
+
+
+```{r}
+all_province<-ggplot(worker_case, aes(x=number_of_workers,y=case_per_10000,label=health_region,col=province))+ geom_point()
+```
+
+```{r}
+all_province + facet_wrap(~ province)
+
+```
+
