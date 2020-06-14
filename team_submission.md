@@ -1,7 +1,12 @@
-This is a sample of the `team_submission.md` that should accompany your submission.
+A dashboard app was created, and is available here: 
+https://public.tableau.com/profile/samantha.cheung#!/vizhome/datafesttrial/Story1?publish=yes
 
-A slide deck/app (select one) was created: and is available in these files XXX (add links/file names as appropriate).
-Dashboard file:
-Data for dashboard file: dashboard_files.txt
+The corresponding data used in the dashboard can be found here in this file in
+the repository:
+	dashboard_files.txt
 
-A video/write-up (select one) was created, and is available in these files XXX (add links/file names as appropriate).
+A write-up created and is available in the following:
+	azeban_report.pdf
+
+Thank you,
+	Team Azeban
